@@ -7,6 +7,22 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              >
+
+    <UserControl.Resources>
+        <DataTemplate x:Key="MarketTemplate">
+            <StackPanel Orientation="Horizontal" Margin="0,2,0,2">
+                <TextBlock Text="{Binding MarketName}" FontWeight="Bold" Margin="0,0,10,0"/>
+                <TextBlock Text="{Binding Pair}" Margin="0,0,10,0"/>
+                <TextBlock Text="{Binding Price, StringFormat={}{0:F2}$}" Foreground="DarkGreen" Margin="0,0,10,0"/>
+                <TextBlock Margin="0,0,10,0">
+                    <Hyperlink NavigateUri="{Binding TradeUrl}" RequestNavigate="Hyperlink_RequestNavigate">
+                        <TextBlock Text="Trade" Foreground="Blue"/>
+                    </Hyperlink>
+                </TextBlock>
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
+
     <Grid Background="LightGreen">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -34,8 +50,9 @@
                                       FontWeight="Bold"
                                       Foreground="DarkBlue"
                                       Background="Transparent"
-                                      BorderThickness="0">
-
+                                      BorderThickness="0"
+                                      Expanded="Expander_Expanded">
+                                
                                 <Expander.HeaderTemplate>
                                     <DataTemplate>
                                         <Grid>
@@ -77,6 +94,8 @@
                                         <Run Text="Price change in 24h: " FontWeight="SemiBold" Foreground="DarkSlateGray"/>
                                         <Run Text="{Binding PriceChange, StringFormat=${0:F2}}" FontWeight="Normal"/>
                                     </TextBlock>
+
+                                    <ItemsControl x:Name="MarketsList" ItemTemplate="{StaticResource MarketTemplate}" Margin="0,10,0,0"/>
                                 </StackPanel>
                             </Expander>
                         </Border>

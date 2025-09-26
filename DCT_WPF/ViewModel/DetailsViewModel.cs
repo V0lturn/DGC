@@ -2,6 +2,7 @@
 using DCT_WPF.Services;
 using System.Collections.ObjectModel;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace DCT_WPF.ViewModel
 {
@@ -9,6 +10,7 @@ namespace DCT_WPF.ViewModel
     {
         private readonly ApiService _apiService = new ApiService();
         public ObservableCollection<Coin> Coins { get; set; } = new ObservableCollection<Coin>();
+        public ObservableCollection<MarketInfo> Markets { get; set; } = new ObservableCollection<MarketInfo>();
 
         public DetailsViewModel()
         {
