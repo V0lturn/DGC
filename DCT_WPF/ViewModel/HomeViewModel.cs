@@ -2,6 +2,7 @@
 using DCT_WPF.Services;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Windows;
 
 namespace DCT_WPF.ViewModel
 {
@@ -30,7 +31,8 @@ namespace DCT_WPF.ViewModel
         {
             try
             {
-                var coins = await _apiService.GetTop10Coins();
+                int N = 10;
+                var coins = await _apiService.GetNCoins(N);
 
                 foreach (var coin in coins)
                 {
@@ -39,9 +41,9 @@ namespace DCT_WPF.ViewModel
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                MessageBox.Show($"Error has been occured: {ex.Message}", "Error",
+                   MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
     }
 }

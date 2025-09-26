@@ -10,10 +10,10 @@ namespace DCT_WPF.Services
     {
         private readonly HttpClient _httpClient = new HttpClient();
 
-        public async Task<List<Coin>> GetTop10Coins()
+        public async Task<List<Coin>> GetNCoins(int? N = null)
         {
             string url = "https://api.coingecko.com/api/v3/coins/markets" +
-             "?vs_currency=usd&order=market_cap_desc&per_page=10&page=1";
+             "?vs_currency=usd&ids=bitcoin&names=Bitcoin&symbols=btc&category=layer-1&price_change_percentage=1h";
 
             _httpClient.DefaultRequestHeaders.Clear();
 
@@ -30,7 +30,7 @@ namespace DCT_WPF.Services
 
             var coins = JsonSerializer.Deserialize<List<Coin>>(response, options);
 
-            return coins;
+            return N.HasValue? coins.Take(N.Value).ToList() : coins;
         }
     }
 }
