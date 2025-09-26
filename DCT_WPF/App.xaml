@@ -1,0 +1,16 @@
+﻿<Application x:Class="DCT_WPF.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:DCT_WPF" 
+             xmlns:View="clr-namespace:DCT_WPF.View"
+             xmlns:ViewModel="clr-namespace:DCT_WPF.ViewModel"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <DataTemplate DataType="{x:Type ViewModel:HomeViewModel}">
+            <View:HomeView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type ViewModel:DetailsViewModel}">
+            <View:DetailsView/>
+        </DataTemplate>
+    </Application.Resources>
+</Application>

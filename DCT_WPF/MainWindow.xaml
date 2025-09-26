@@ -1,0 +1,41 @@
+﻿<Window x:Class="DCT_WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DCT_WPF"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Background="LightGray">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                <Button Margin="5" Width="100" Height="30" 
+                        Content="Home" 
+                        Command="{Binding UpdateViewCommand}" 
+                        CommandParameter="Home"/>
+                <Button Margin="5" Width="100" Height="30" 
+                        Content="Details" 
+                        Command="{Binding UpdateViewCommand}" 
+                        CommandParameter="Details"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                <TextBox Width="150" Height="25" Margin="5" VerticalContentAlignment="Center"/>
+                <Button Width="100" Height="30" Content="Search" Margin="5"/>
+            </StackPanel>
+        </Grid>
+
+        <ContentControl Grid.Row="1" Content="{Binding SelectedViewModel}"/>
+    </Grid>
+</Window>
