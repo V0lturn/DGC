@@ -1,7 +1,6 @@
 ﻿using DCT_WPF.Model;
 using DCT_WPF.Services;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Windows;
 
 namespace DCT_WPF.ViewModel

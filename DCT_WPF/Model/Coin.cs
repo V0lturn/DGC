@@ -16,7 +16,10 @@ namespace DCT_WPF.Model
         [JsonPropertyName("current_price")]
         public decimal CurrentPrice { get; set; }
 
-        [JsonPropertyName("market_cap")]
-        public decimal MarketCap { get; set; }
+        [JsonPropertyName("total_volume")]
+        public decimal TotalVolume { get; set; }
+
+        [JsonPropertyName("price_change_24h")]
+        public decimal PriceChange { get; set; }
     }
 }

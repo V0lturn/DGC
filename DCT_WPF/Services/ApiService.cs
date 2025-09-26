@@ -1,6 +1,5 @@
 ﻿using DCT_WPF.Model;
 using System.Configuration;
-using System.Diagnostics;
 using System.Net.Http;
 using System.Text.Json;
 
@@ -12,8 +11,7 @@ namespace DCT_WPF.Services
 
         public async Task<List<Coin>> GetNCoins(int? N = null)
         {
-            string url = "https://api.coingecko.com/api/v3/coins/markets" +
-             "?vs_currency=usd&ids=bitcoin&names=Bitcoin&symbols=btc&category=layer-1&price_change_percentage=1h";
+            string url = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd";
 
             _httpClient.DefaultRequestHeaders.Clear();
 
