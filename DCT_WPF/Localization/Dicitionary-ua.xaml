@@ -1,0 +1,16 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:System="clr-namespace:System;assembly=System.Runtime">
+
+    <System:String x:Key="HomeButton">Головеа</System:String>
+    <System:String x:Key="DetailsButton">Детально</System:String>
+    <System:String x:Key="SearchButton">Пошук</System:String>
+    <System:String x:Key="MainPageTitle">Головна сторінка</System:String>
+    <System:String x:Key="MainPageSubtitle">Топ 10 коінів</System:String>
+    <System:String x:Key="MainPageSymbolField" xml:space="preserve">Символ: </System:String>
+    <System:String x:Key="MainPagePriceField" xml:space="preserve">Ціна: </System:String>
+    <System:String x:Key="DetailsPageTitle">Детальна інформація</System:String>
+    <System:String x:Key="DetailPageSymbolField" xml:space="preserve">Символ: </System:String>
+    <System:String x:Key="DetailPageVolumeField" xml:space="preserve">Об'єм: </System:String>
+    <System:String x:Key="DetailPagePriceChangedIn24hField" xml:space="preserve">Зміна ціни за 24год: </System:String>
+</ResourceDictionary>

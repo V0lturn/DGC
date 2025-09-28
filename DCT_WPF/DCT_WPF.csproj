@@ -8,4 +8,16 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Fonts\helvetica_bold.otf" />
+    <None Remove="Fonts\helvetica_light.otf" />
+    <None Remove="Fonts\helvetica_regular.otf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Fonts\helvetica_bold.otf" />
+    <Resource Include="Fonts\helvetica_light.otf" />
+    <Resource Include="Fonts\helvetica_regular.otf" />
+  </ItemGroup>
+
 </Project>

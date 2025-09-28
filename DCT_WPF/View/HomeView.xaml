@@ -6,53 +6,58 @@
              xmlns:local="clr-namespace:DCT_WPF.View"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="LightBlue">
+    
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" HorizontalAlignment="Center" Margin="10">
-            <TextBlock Text="Main Page" 
+        <StackPanel Grid.Row="0" HorizontalAlignment="Center" Margin="0 10 10 50">
+            <TextBlock Text="{DynamicResource MainPageTitle}" 
                       FontSize="24" 
                       FontWeight="Bold" 
-                      HorizontalAlignment="Center"/>
-            <TextBlock Text="Top 10 coins" 
+                      HorizontalAlignment="Center"
+                      Foreground="White"/>
+            <TextBlock Text="{DynamicResource MainPageSubtitle}" 
                       FontSize="16" 
                       Margin="0,10,0,0" 
-                      HorizontalAlignment="Center"/>
+                      HorizontalAlignment="Center"
+                      Foreground="White"/>
         </StackPanel>
 
-        <ScrollViewer Grid.Row="1" 
-                      VerticalScrollBarVisibility="Auto" 
-                      HorizontalScrollBarVisibility="Disabled">
-            
-            <ItemsControl ItemsSource="{Binding Coins}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Border BorderBrush="LightBlue" BorderThickness="2" 
-                                Margin="10" Padding="15" CornerRadius="8"
-                                Background="AliceBlue">
-                            <StackPanel>
-                                <TextBlock Text="{Binding Name}" 
-                                          FontSize="18" FontWeight="Bold" 
-                                          Foreground="DarkBlue"
-                                          Margin="0,0,0,10"/>
-                                <TextBlock Margin="0,2">
-                                    <Run Text="Symbol: " FontWeight="SemiBold"/>
-                                    <Run Text="{Binding Symbol}"/>
-                                </TextBlock>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="15*"/>
+                <ColumnDefinition Width="70*"/>
+                <ColumnDefinition Width="15*"/>
+            </Grid.ColumnDefinitions>
 
-                                <TextBlock Margin="0,2">
-                                    <Run Text="Price: " FontWeight="SemiBold"/>
-                                    <Run Text="{Binding CurrentPrice, StringFormat=${0:F2}}"/>
-                                </TextBlock>
-                            </StackPanel>
-                        </Border>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-            
-        </ScrollViewer>
+            <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden">
+                <ItemsControl ItemsSource="{Binding Coins}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="LightBlue" BorderThickness="2"
+                                    Margin="10" Padding="15" CornerRadius="8"
+                                    Background="AliceBlue">
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Name}" FontSize="20" FontWeight="Bold"
+                                               Foreground="#001fff" Margin="0,0,0,10"/>
+                                    <TextBlock Margin="0,2" FontSize="16">
+                                        <Run Text="{DynamicResource MainPageSymbolField}" FontWeight="SemiBold"/>
+                                        <Run Text="{Binding Symbol}"/>  
+                                    </TextBlock>
+
+                                    <TextBlock Margin="0,2" FontSize="16">
+                                        <Run Text="{DynamicResource MainPagePriceField}" FontWeight="SemiBold"/>
+                                        <Run Text="{Binding CurrentPrice, StringFormat=${0:F2}}"/>  
+                                    </TextBlock>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </Grid>
     </Grid>
 </UserControl>

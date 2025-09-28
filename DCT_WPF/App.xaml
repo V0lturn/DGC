@@ -6,11 +6,17 @@
              xmlns:ViewModel="clr-namespace:DCT_WPF.ViewModel"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <DataTemplate DataType="{x:Type ViewModel:HomeViewModel}">
-            <View:HomeView/>
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type ViewModel:DetailsViewModel}">
-            <View:DetailsView/>
-        </DataTemplate>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Localization/Dicitionary-en.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <DataTemplate DataType="{x:Type ViewModel:HomeViewModel}">
+                <View:HomeView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type ViewModel:DetailsViewModel}">
+                <View:DetailsView/>
+            </DataTemplate>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
