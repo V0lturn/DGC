@@ -55,5 +55,37 @@ namespace DCT_WPF.Services
                 .ToList();
         }
 
+        public async Task<Coin?> GetCoinByNameOrId(string input)
+        {
+            string searchUrl = $"https://api.coingecko.com/api/v3/search?query={input}";
+            _httpClient.DefaultRequestHeaders.Clear();
+            string apiKey = ConfigurationManager.AppSettings["CoinGeckoApiKey"];
+            _httpClient.DefaultRequestHeaders.Add("x-cg-demo-api-key", apiKey);
+
+            var searchResponse = await _httpClient.GetStringAsync(searchUrl);
+            var searchJson = JsonSerializer.Deserialize<CoinSearchResponse>(searchResponse, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
+
+            if (searchJson?.Coins == null || searchJson.Coins.Count == 0)
+                return null;
+
+            var bestMatch = searchJson.Coins
+                .FirstOrDefault(c => string.Equals(c.Symbol, input, StringComparison.OrdinalIgnoreCase)
+                                  || string.Equals(c.Id, input, StringComparison.OrdinalIgnoreCase))
+                ?? searchJson.Coins.First();
+
+            string marketsUrl = $"https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids={bestMatch.Id}";
+            var marketsResponse = await _httpClient.GetStringAsync(marketsUrl);
+
+            var coins = JsonSerializer.Deserialize<List<Coin>>(marketsResponse, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
+
+            return coins?.FirstOrDefault();
+        }
+
     }
 }

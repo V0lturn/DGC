@@ -31,8 +31,10 @@
             </StackPanel>
 
             <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-                <TextBox Width="150" Height="25" Margin="5" VerticalContentAlignment="Center"/>
-                <Button Width="100" Height="30" Content="Search" Margin="5"/>
+                <TextBox Width="150" Height="25" VerticalContentAlignment="Center"
+                         Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"/>
+                <Button Width="50" Height="25" Content="Search" Margin ="0"
+                        Command="{Binding SearchCommand}"/>
             </StackPanel>
         </Grid>
 
