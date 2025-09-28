@@ -1,5 +1,7 @@
 ﻿using DCT_WPF.Commands;
+using DCT_WPF.Model;
 using DCT_WPF.Services;
+using System.DirectoryServices;
 using System.Windows;
 using System.Windows.Input;
 
@@ -8,7 +10,6 @@ namespace DCT_WPF.ViewModel
     public class MainViewModel : BaseViewModel
     {
         private BaseViewModel _selectedViewModel;
-        private string _searchText;
         private readonly ApiService _coinService;
 
         public BaseViewModel SelectedViewModel
@@ -17,16 +18,40 @@ namespace DCT_WPF.ViewModel
             set
             {
                 _selectedViewModel = value;
-                OnPropertyChanged(nameof(SelectedViewModel));
+                OnPropertyChanged();
             }
         }
+
+        private string _searchText;
         public string SearchText
         {
             get => _searchText;
             set
             {
                 _searchText = value;
-                OnPropertyChanged(nameof(SearchText));
+                OnPropertyChanged();
+            }
+        }
+
+        private Coin _searchResult;
+        public Coin SearchResult
+        {
+            get => _searchResult;
+            set
+            {
+                _searchResult = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _isPopupOpen;
+        public bool IsPopupOpen
+        {
+            get => _isPopupOpen;
+            set
+            {
+                _isPopupOpen = value;
+                OnPropertyChanged();
             }
         }
 
@@ -44,29 +69,22 @@ namespace DCT_WPF.ViewModel
 
         private async Task SearchCoin()
         {
+            SearchResult = null;
+            IsPopupOpen = false;
+
             if (string.IsNullOrWhiteSpace(SearchText))
-            {
-                MessageBox.Show("Enter name of the coin");
                 return;
-            }
 
             var coin = await _coinService.GetCoinByNameOrId(SearchText);
-            if (coin == null)
+            if (coin != null)
             {
-                MessageBox.Show("Coin was not found");
-                return;
+                SearchResult = coin;
+                IsPopupOpen = true;
             }
-
-            MessageBox.Show(
-                $"Name: {coin.Name}\n" +
-                $"Symbol: {coin.Symbol}\n" +
-                $"Price: {coin.CurrentPrice}$\n" +
-                $"Volume: {coin.TotalVolume}\n" +
-                $"24h Change: {coin.PriceChange}"
-            );
-
-            SearchText = string.Empty;
+            else
+            {
+                MessageBox.Show("Error has occured", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
-
     }
 }
