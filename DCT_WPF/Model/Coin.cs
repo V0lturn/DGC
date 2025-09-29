@@ -20,6 +20,6 @@ namespace DCT_WPF.Model
         public decimal TotalVolume { get; set; }
 
         [JsonPropertyName("price_change_24h")]
-        public decimal PriceChange { get; set; }
+        public decimal? PriceChange { get; set; }
     }
 }
